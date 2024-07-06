@@ -1,4 +1,4 @@
-Command line program to check if an installed Steam app has an update available.
+Command line program to check if an installed Steam app has an available update.
 
 ## Installation
 

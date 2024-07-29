@@ -15,6 +15,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
 namespace SteamAppUpdateCheck
@@ -171,6 +172,17 @@ namespace SteamAppUpdateCheck
 			: base(name)
 		{
 			Tokens = new Dictionary<string, SteamMetaToken>();
+		}
+
+		/// <summary>
+		/// Attempts to retrieve a token fromt his object by name
+		/// </summary>
+		/// <param name="key">The token name</param>
+		/// <param name="value">The token, if found</param>
+		/// <returns>Whether the token was found</returns>
+		public bool TryGetValue(string key, [NotNullWhen(true)] out SteamMetaToken? value)
+		{
+			return Tokens.TryGetValue(key, out value);
 		}
 
 		public override string ToString()

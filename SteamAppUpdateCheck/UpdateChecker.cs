@@ -97,11 +97,14 @@ namespace SteamAppUpdateCheck
 				SteamMetaObject? userConfigObject = manifest.RootObject["UserConfig"] as SteamMetaObject;
 				if (userConfigObject is not null)
 				{
-					if (userConfigObject["BetaKey"] is SteamMetaValue userConfigToken)
+					if (userConfigObject.TryGetValue("BetaKey", out SteamMetaToken? tokenValue))
 					{
-						if (!string.IsNullOrEmpty(userConfigToken.Value))
+						if (tokenValue is SteamMetaValue userConfigToken)
 						{
-							betaKey = userConfigToken.Value;
+							if (!string.IsNullOrEmpty(userConfigToken.Value))
+							{
+								betaKey = userConfigToken.Value;
+							}
 						}
 					}
 				}
